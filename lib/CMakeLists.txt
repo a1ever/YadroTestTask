@@ -1,0 +1,1 @@
+add_library(GameClub GameClub.cpp Parser.cpp)
