@@ -1,7 +1,8 @@
-#include <map>
 #include "ProcessGameClub.h"
 #include "GameClub.h"
 #include "Parser.h"
+
+#include <map>
 
 gameclub::ProcessGameClub::ProcessGameClub(std::istream& in, std::ostream& out) : out(out), in(in) {}
 void gameclub::ProcessGameClub::Run() {
@@ -28,6 +29,7 @@ void gameclub::ProcessGameClub::Run() {
     GenerateClosingEvents();
     out << TimeToString(club.GetClosingTime()) << "\n";
     auto& ans = club.GetAnsTables();
+    if (ans.empty()) ans.resize(club.GetTablesAmount(), {my_time{0min}, 0});
     for (int i = 0; i != ans.size(); ++i) {
         out << std::to_string(i + 1) + " " + std::to_string(ans[i].money) + " " + TimeToString(ans[i].time) << "\n";
     }
