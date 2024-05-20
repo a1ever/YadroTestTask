@@ -1,11 +1,18 @@
 #pragma once
 
+#include "GameClubEvents.h"
 #include <regex>
+#include <queue>
 namespace gameclub {
-    std::regex number_regex = std::regex(R"(^\d+$)");
-    std::regex working_hours_regex = std::regex(R"(^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]\s(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$)");
-    std::regex event_regex = std::regex(R"(^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]\s(2\s[a-z0-9_-]+\s[0-9]+|[134]\s[a-z0-9_-]+)$)");
 class Parser {
-
+ private:
+  std::queue<std::unique_ptr<gameclub::IEventCommand>> events_;
+  std::string ParseTableAmount(const std::string& string);
+  std::string ParseOpeningHours(const std::string& string);
+  std::string ParseHourlyPricing(const std::string& string);
+  std::string ParseEvent(const std::string& string);
+ public:
+    std::string Parse(std::istream& in);
+    std::queue<std::unique_ptr<gameclub::IEventCommand>>& GetEvents() ;
 };
 }

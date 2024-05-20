@@ -1,1 +1,1 @@
-add_library(GameClub GameClub.cpp Parser.cpp GameClubEvents.cpp TimeParser.h ProcessGameClub.h)
+add_library(GameClub GameClub.cpp Parser.cpp GameClubEvents.cpp TimeParser.cpp ProcessGameClub.cpp)

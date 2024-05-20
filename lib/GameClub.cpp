@@ -14,13 +14,13 @@ uint32_t gameclub::GameClub::GetTablesAmount() const {
 void gameclub::GameClub::SetTablesAmount(uint32_t tables_amount) {
     GameClub::tables_amount = tables_amount;
 }
-std::unordered_map<std::string, gameclub::TableTime>& gameclub::GameClub::GetClientsOnTables() {
+std::unordered_map<std::string, gameclub::TimeTableNum>& gameclub::GameClub::GetClientsOnTables() {
     return clients_on_tables_;
 }
-std::unordered_map<uint32_t, gameclub::ClientTime>& gameclub::GameClub::GetTables() {
+std::unordered_map<uint32_t, gameclub::TimeClient>& gameclub::GameClub::GetTables() {
     return tables_;
 }
-std::unordered_map<uint32_t, gameclub::ClientTime>& gameclub::GameClub::GetAnsTables() {
+std::vector<gameclub::TimeMoney>& gameclub::GameClub::GetAnsTables() {
     return ans_tables_;
 }
 std::queue<std::string>& gameclub::GameClub::GetWaitingList() {
@@ -40,6 +40,17 @@ void gameclub::GameClub::SetClosingTime(const my_time& closing_time) {
 }
 std::unordered_set<std::string>& gameclub::GameClub::GetClients() {
     return clients_;
+}
+uint32_t gameclub::GameClub::GetHourPrice() const {
+    return hour_price;
+}
+void gameclub::GameClub::SetHourPrice(uint32_t hour_price) {
+    GameClub::hour_price = hour_price;
+}
+uint64_t gameclub::GameClub::CalculatePricingForMinutes(const my_time& time) {
+    auto minutes = GetMinutes(time);
+    uint32_t billing_hrs = (minutes + 59) / 60;
+    return billing_hrs * hour_price;
 }
 
 
