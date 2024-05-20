@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace GameClub;
+using namespace gameclub;
 
 
 TEST(GameClubParserTestSuite, EmptyTest) {

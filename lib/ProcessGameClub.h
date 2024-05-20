@@ -1,0 +1,6 @@
+namespace gameclub {
+
+class ProcessGameClub {
+
+};
+}

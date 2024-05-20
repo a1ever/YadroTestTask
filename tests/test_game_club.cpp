@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace GameClub;
+using namespace gameclub;
 
 std::vector<std::string> SplitString(const std::string& str) {
     std::istringstream iss(str);
